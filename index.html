@@ -70,7 +70,31 @@ tr:last-child td{border-bottom:0}
 @media(max-width:700px){
  .grid{grid-template-columns:1fr}
  .hero{padding:24px 22px}.content{padding:22px}
- h1{font-size:28px}.actions{flex-direction:column}.secondary{width:100%}
+ h1{font-size:28px}
+
+ .actions{
+   flex-direction:column;
+   align-items:stretch;
+   gap:10px;
+ }
+
+ /* No celular, CALCULAR é deliberadamente maior e mais destacado. */
+ .primary{
+   width:100%;
+   min-height:64px;
+   height:64px;
+   font-size:17px;
+ }
+
+ /* LIMPAR fica menor para reduzir toques acidentais. */
+ .secondary{
+   width:118px;
+   height:42px;
+   min-height:42px;
+   align-self:center;
+   font-size:13px;
+   border-radius:10px;
+ }
 }
 
 </style>
@@ -114,6 +138,8 @@ tr:last-child td{border-bottom:0}
         </div>
 
         <div id="erro" class="error hidden" role="alert"></div>
+
+        <div class="ref-title">Dados de referência da planilha</div>
         <div class="note">
           Fórmula para fios/cabos e demais itens: (quantidade de referência ÷ peso de referência) × peso informado.
           Os valores foram transpostos da planilha “TABELA CONVERSAO.xlsx”. Os registros sem peso de referência permanecem visíveis, mas são marcados como incompletos e não entram no cálculo.
