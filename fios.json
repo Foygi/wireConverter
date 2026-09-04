@@ -1,0 +1,191 @@
+[
+  {
+    "categoria": "Flexível 1X",
+    "produto": "1,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 1.97,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Flexível 1X",
+    "produto": "2,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 2.98,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Flexível 1X",
+    "produto": "4,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 4.45,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Flexível 1X",
+    "produto": "6,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 6.2,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Flexível 1X",
+    "produto": "10,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 10.6,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Paralelo 2X",
+    "produto": "1,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 3.483,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Paralelo 2X",
+    "produto": "1,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 4.1,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Paralelo 2X",
+    "produto": "2,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 6.4,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 2X",
+    "produto": "1,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 6.211,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 2X",
+    "produto": "1,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 8.2,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 2X",
+    "produto": "2,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 5.875,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 3X",
+    "produto": "1,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": null,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "incompleto"
+  },
+  {
+    "categoria": "Cabo PP 3X",
+    "produto": "1,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 10.4,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 3X",
+    "produto": "2,5 mm²",
+    "unidade": "m",
+    "pesoReferencia": 1.58,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Cabo PP 3X",
+    "produto": "4,0 mm²",
+    "unidade": "m",
+    "pesoReferencia": 16.37,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "7 Pernas Rígido",
+    "produto": "10 mm²",
+    "unidade": "m",
+    "pesoReferencia": 10.6,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "7 Pernas Rígido",
+    "produto": "16 mm²",
+    "unidade": "m",
+    "pesoReferencia": null,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "incompleto"
+  },
+  {
+    "categoria": "7 Pernas Rígido",
+    "produto": "25 mm²",
+    "unidade": "m",
+    "pesoReferencia": null,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "incompleto"
+  },
+  {
+    "categoria": "FLEX 16,00 750 V",
+    "produto": "16 mm²",
+    "unidade": "m",
+    "pesoReferencia": 15.85,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "m",
+    "status": "ok"
+  },
+  {
+    "categoria": "Arruela",
+    "produto": "Referência 45383",
+    "unidade": "unidades",
+    "pesoReferencia": 53.0,
+    "comprimentoReferencia": 20,
+    "referenciaUnidade": "unidades",
+    "status": "ok"
+  },
+  {
+    "categoria": "Parafuso",
+    "produto": "4,0 x 35",
+    "unidade": "unidades",
+    "pesoReferencia": 0.185,
+    "comprimentoReferencia": 100,
+    "referenciaUnidade": "unidades",
+    "status": "ok"
+  }
+]

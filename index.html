@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0757a6">
+<title>Megawatt | Conversor de Fios</title>
+<style>
+
+:root{
+  --blue:#0757a6; --blue-dark:#063d78; --orange:#f58220;
+  --bg:#eef3f8; --text:#16202a; --muted:#687582; --white:#fff;
+  --border:#dbe4ec; --green:#0c7a50; --red:#b42318; --soft:#f7f9fb;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;min-height:100vh;font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:
+    radial-gradient(circle at 0 0,rgba(7,87,166,.11),transparent 30%),
+    radial-gradient(circle at 100% 0,rgba(245,130,32,.12),transparent 28%),
+    var(--bg);color:var(--text)
+}
+button,input,select{font:inherit}
+.app{min-height:100vh;display:flex;justify-content:center;padding:25px 15px 40px}
+.shell{width:min(100%,980px)}
+.card{background:rgba(255,255,255,.97);border:1px solid rgba(9,58,97,.08);border-radius:25px;box-shadow:0 22px 60px rgba(17,36,53,.14);overflow:hidden}
+.hero{
+  padding:28px 32px 25px;color:white;position:relative;
+  background:linear-gradient(135deg,var(--blue-dark),var(--blue))
+}
+.hero:before,.hero:after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.hero:before{width:230px;height:230px;right:-90px;top:-110px;background:rgba(245,130,32,.18)}
+.hero:after{width:130px;height:130px;right:110px;bottom:-95px;background:rgba(255,255,255,.06)}
+.logo{position:relative;z-index:1;font-weight:950;letter-spacing:3px;font-size:18px}
+.logo span{color:#ffb25f}
+h1{position:relative;z-index:1;margin:15px 0 6px;font-size:32px;line-height:1.05}
+.hero p{position:relative;z-index:1;margin:0;color:rgba(255,255,255,.83)}
+.content{padding:28px 32px 31px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field label{display:block;margin-bottom:8px;font-size:13px;font-weight:850}
+select,input{
+ width:100%;height:53px;border:1px solid var(--border);border-radius:13px;
+ background:#fff;color:var(--text);padding:0 14px;outline:none
+}
+select:focus,input:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(7,87,166,.1)}
+.actions{display:flex;gap:12px;margin-top:20px}
+.btn{height:53px;border:0;border-radius:13px;cursor:pointer;font-weight:900}
+.primary{flex:1;background:linear-gradient(135deg,var(--orange),#ed6d08);color:#fff;box-shadow:0 10px 22px rgba(245,130,32,.2)}
+.secondary{width:150px;background:#edf2f7;color:#24313d}
+.result{
+ margin-top:20px;padding:23px;border-radius:18px;text-align:center;
+ background:linear-gradient(180deg,#f2faf7,#e8f6f1);border:1px solid #cbe8dc
+}
+.result .label{font-size:13px;color:var(--muted);font-weight:750}
+.result .value{font-size:43px;font-weight:950;line-height:1.05;margin:6px 0;color:var(--green)}
+.result .detail{font-size:13px;color:var(--muted)}
+.error{margin-top:15px;padding:13px 15px;background:#fff1f0;color:var(--red);border-radius:12px;font-weight:750}
+.hidden{display:none!important}
+.ref-title{margin:28px 0 12px;font-size:17px;font-weight:900}
+.table-wrap{overflow:auto;border:1px solid var(--border);border-radius:15px}
+table{width:100%;border-collapse:collapse;min-width:700px;background:#fff}
+th,td{padding:11px 12px;text-align:left;border-bottom:1px solid #edf1f5;font-size:13px}
+th{background:#f5f8fb;font-weight:900;color:#40505f}
+tr:last-child td{border-bottom:0}
+.badge{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:11px;font-weight:850}
+.ok{background:#e8f6f0;color:var(--green)}
+.incomplete{background:#fff4e8;color:#a15c00}
+.note{margin-top:13px;color:var(--muted);font-size:12px;line-height:1.5}
+@media(max-width:700px){
+ .grid{grid-template-columns:1fr}
+ .hero{padding:24px 22px}.content{padding:22px}
+ h1{font-size:28px}.actions{flex-direction:column}.secondary{width:100%}
+}
+
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="shell">
+    <section class="card">
+      <header class="hero">
+        <div class="logo">MEGA<span>WATT</span></div>
+        <h1>Conversor de Fios</h1>
+        <p>Conversão de peso para metros usando os dados da sua planilha.</p>
+      </header>
+
+      <div class="content">
+        <div class="grid">
+          <div class="field">
+            <label for="categoria">Tipo de produto</label>
+            <select id="categoria"></select>
+          </div>
+          <div class="field">
+            <label for="produto">Bitola / produto</label>
+            <select id="produto"></select>
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:18px">
+          <label for="peso">Peso informado</label>
+          <input id="peso" type="number" min="0" step="0.001" inputmode="decimal" placeholder="Ex.: 12,500">
+        </div>
+
+        <div class="actions">
+          <button class="btn primary" id="calcular">CALCULAR</button>
+          <button class="btn secondary" id="limpar" type="button">Limpar</button>
+        </div>
+
+        <div id="resultado" class="result hidden" aria-live="polite">
+          <div class="label">Resultado estimado</div>
+          <div id="valor" class="value">0,00 m</div>
+          <div id="detalhe" class="detail"></div>
+        </div>
+
+        <div id="erro" class="error hidden" role="alert"></div>
+        <div class="note">
+          Fórmula para fios/cabos e demais itens: (quantidade de referência ÷ peso de referência) × peso informado.
+          Os valores foram transpostos da planilha “TABELA CONVERSAO.xlsx”. Os registros sem peso de referência permanecem visíveis, mas são marcados como incompletos e não entram no cálculo.
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+
+const produtosPadrao = [{"categoria": "Flexível 1X", "produto": "1,5 mm²", "unidade": "m", "pesoReferencia": 1.97, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Flexível 1X", "produto": "2,5 mm²", "unidade": "m", "pesoReferencia": 2.98, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Flexível 1X", "produto": "4,0 mm²", "unidade": "m", "pesoReferencia": 4.45, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Flexível 1X", "produto": "6,0 mm²", "unidade": "m", "pesoReferencia": 6.2, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Flexível 1X", "produto": "10,0 mm²", "unidade": "m", "pesoReferencia": 10.6, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Paralelo 2X", "produto": "1,0 mm²", "unidade": "m", "pesoReferencia": 3.483, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Paralelo 2X", "produto": "1,5 mm²", "unidade": "m", "pesoReferencia": 4.1, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Paralelo 2X", "produto": "2,5 mm²", "unidade": "m", "pesoReferencia": 6.4, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 2X", "produto": "1,0 mm²", "unidade": "m", "pesoReferencia": 6.211, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 2X", "produto": "1,5 mm²", "unidade": "m", "pesoReferencia": 8.2, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 2X", "produto": "2,5 mm²", "unidade": "m", "pesoReferencia": 5.875, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 3X", "produto": "1,0 mm²", "unidade": "m", "pesoReferencia": null, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "incompleto"}, {"categoria": "Cabo PP 3X", "produto": "1,5 mm²", "unidade": "m", "pesoReferencia": 10.4, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 3X", "produto": "2,5 mm²", "unidade": "m", "pesoReferencia": 1.58, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Cabo PP 3X", "produto": "4,0 mm²", "unidade": "m", "pesoReferencia": 16.37, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "7 Pernas Rígido", "produto": "10 mm²", "unidade": "m", "pesoReferencia": 10.6, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "7 Pernas Rígido", "produto": "16 mm²", "unidade": "m", "pesoReferencia": null, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "incompleto"}, {"categoria": "7 Pernas Rígido", "produto": "25 mm²", "unidade": "m", "pesoReferencia": null, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "incompleto"}, {"categoria": "FLEX 16,00 750 V", "produto": "16 mm²", "unidade": "m", "pesoReferencia": 15.85, "comprimentoReferencia": 100, "referenciaUnidade": "m", "status": "ok"}, {"categoria": "Arruela", "produto": "Referência 45383", "unidade": "unidades", "pesoReferencia": 53.0, "comprimentoReferencia": 20, "referenciaUnidade": "unidades", "status": "ok"}, {"categoria": "Parafuso", "produto": "4,0 x 35", "unidade": "unidades", "pesoReferencia": 0.185, "comprimentoReferencia": 100, "referenciaUnidade": "unidades", "status": "ok"}];
+
+let produtos = produtosPadrao.slice();
+const categoria = document.getElementById("categoria");
+const produto = document.getElementById("produto");
+const peso = document.getElementById("peso");
+const calcular = document.getElementById("calcular");
+const limpar = document.getElementById("limpar");
+const resultado = document.getElementById("resultado");
+const valor = document.getElementById("valor");
+const detalhe = document.getElementById("detalhe");
+const erro = document.getElementById("erro");
+const refBody = document.getElementById("refBody");
+
+function categorias(){
+  return [...new Set(produtos.map(x=>x.categoria))];
+}
+function carregarCategorias(){
+  categoria.innerHTML='<option value="">Selecione o tipo</option>';
+  categorias().forEach(c=>{
+    const o=document.createElement("option");o.value=c;o.textContent=c;categoria.appendChild(o);
+  });
+}
+function carregarProdutos(){
+  produto.innerHTML='<option value="">Selecione a bitola / produto</option>';
+  const cat=categoria.value;
+  produtos.forEach((p,i)=>{
+    if(p.categoria===cat){
+      const o=document.createElement("option");
+      o.value=i;
+      o.textContent=p.status==="ok"?p.produto:p.produto+" — dados incompletos";
+      produto.appendChild(o);
+    }
+  });
+}
+function fmt(n,d=2){return n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})}
+function showError(msg){erro.textContent=msg;erro.classList.remove("hidden");resultado.classList.add("hidden")}
+function clearError(){erro.classList.add("hidden")}
+function calcularResultado(){
+  clearError();
+  const idx=Number(produto.value);
+  if(categoria.value===""){showError("Selecione o tipo de produto.");return}
+  if(produto.value===""){showError("Selecione a bitola ou produto.");return}
+  const p=produtos[idx];
+  const pesoInformado=Number(String(peso.value).replace(",","."));
+  if(!peso.value || !Number.isFinite(pesoInformado) || pesoInformado<=0){showError("Informe um peso maior que zero.");return}
+  if(p.status!=="ok" || p.pesoReferencia===null){showError("Este item aparece na planilha, mas não possui peso de referência suficiente para o cálculo.");return}
+  const resultadoCalc=(p.comprimentoReferencia/p.pesoReferencia)*pesoInformado;
+  valor.textContent=fmt(resultadoCalc)+(p.unidade==="m"?" m":" unidades");
+  detalhe.textContent=`Referência da planilha: ${fmt(p.pesoReferencia,p.pesoReferencia%1?3:2)} kg → ${fmt(p.comprimentoReferencia,p.comprimentoReferencia%1?2:0)} ${p.referenciaUnidade}`;
+  resultado.classList.remove("hidden");
+}
+function montarTabela(){
+  refBody.innerHTML="";
+  produtos.forEach(p=>{
+    const tr=document.createElement("tr");
+    const status=p.status==="ok"?'<span class="badge ok">Disponível</span>':'<span class="badge incomplete">Incompleto</span>';
+    const ref=p.pesoReferencia===null?"—":`${fmt(p.pesoReferencia, p.pesoReferencia%1?3:2)} kg`;
+    tr.innerHTML=`<td>${p.categoria}</td><td>${p.produto}</td><td>${ref}</td><td>${fmt(p.comprimentoReferencia,p.comprimentoReferencia%1?2:0)} ${p.referenciaUnidade}</td><td>${status}</td>`;
+    refBody.appendChild(tr);
+  });
+}
+categoria.addEventListener("change",()=>{clearError();resultado.classList.add("hidden");carregarProdutos()});
+calcular.addEventListener("click",calcularResultado);
+limpar.addEventListener("click",()=>{categoria.value="";carregarProdutos();peso.value="";clearError();resultado.classList.add("hidden")});
+peso.addEventListener("keydown",e=>{if(e.key==="Enter")calcularResultado()});
+produto.addEventListener("change",clearError);
+
+carregarCategorias();
+carregarProdutos();
+montarTabela();
+
+</script>
+</body>
+</html>
